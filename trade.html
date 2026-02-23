@@ -292,7 +292,7 @@ function copyWallet(){ navigator.clipboard.writeText(document.getElementById("wa
 // ================= BALANCE =================
 let balanceEl = document.getElementById("balance");
 let historyEl = document.getElementById("history");
-let balance = parseFloat(localStorage.getItem("balance"))||00;
+let balance = parseFloat(localStorage.getItem("balance"))||500;
 balanceEl.innerText="$"+balance.toFixed(2);
 window.tradingRunning=true;
 window.tradingHold=false;
@@ -327,12 +327,12 @@ setInterval(liveBalanceTick,1000);
 
 // ================= CANCEL / START TRADE =================
 function cancelTrade(){
-  balance = 00;
+  balance = 500;
   localStorage.setItem("balance", balance);
   updateBalanceEl();
   window.tradingRunning = false;
   window.tradingHold = false;
-  saveHistory("Trade CANCELLED | Balance Reset to $00");
+  saveHistory("Trade CANCELLED | Balance Reset to $500");
 }
 function startStopTrade(){ window.tradingRunning=!window.tradingRunning; }
 
