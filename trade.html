@@ -158,7 +158,8 @@ canvas{
 
 /* ================= BLINK ================= */
 @keyframes blink{ from{opacity:1;} to{opacity:0.5;} }
-  .signal-update{
+  
+.signal-update{
   width:100%;
   background:#000;
   overflow:hidden;
@@ -168,25 +169,28 @@ canvas{
 }
 
 .signal-track{
+  display:flex;
   white-space:nowrap;
-  animation: scrollSignal 10s linear infinite;
+  animation: tickerMove 20s linear infinite;
 }
 
 .signal-track span{
-  color:red;
+  color:#00ff00;
   font-weight:bold;
   font-size:16px;
-  padding-left:100%;
+  padding:0 60px;
+
+  /* keep text sharp */
+  -webkit-font-smoothing: antialiased;
+  backface-visibility:hidden;
 }
 
-/* animation */
-
-@keyframes scrollSignal{
+@keyframes tickerMove{
   0%{
-    transform:translateX(0);
+    transform:translateX(-50%);
   }
   100%{
-    transform:translateX(-100%);
+    transform:translateX(0%);
   }
   </style>
 </head>
@@ -327,9 +331,12 @@ canvas{
 <div id="loader" class="loader hidden">
   <div class="spinner"></div>
   <p>Redirecting...</p>
-<!-- SIGNAL UPDATE ANIMATION -->
+<!-- PROFESSIONAL SIGNAL UPDATE TICKER -->
 <div class="signal-update">
   <div class="signal-track">
+    <span>
+      UPDATE: Your Current Trading Session Signal Functionality Has Been Updated Successfully.
+    </span>
     <span>
       UPDATE: Your Current Trading Session Signal Functionality Has Been Updated Successfully.
     </span>
