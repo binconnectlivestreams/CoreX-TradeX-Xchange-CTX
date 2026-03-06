@@ -158,7 +158,32 @@ canvas{
 
 /* ================= BLINK ================= */
 @keyframes blink{ from{opacity:1;} to{opacity:0.5;} }
-</style>
+.signal-update{
+  width:100%;
+  overflow:hidden;
+  background:#000; /* optional background */
+  padding:8px 0;
+  position:relative;
+}
+
+.signal-text{
+  color:red;
+  font-weight:bold;
+  font-size:16px;
+  white-space:nowrap;
+  position:absolute;
+  animation: scrollSignal 3s linear infinite;
+}
+
+@keyframes scrollSignal{
+  0%{
+    transform: translateX(100%);
+  }
+  100%{
+    transform: translateX(-100%);
+  }
+}
+  </style>
 </head>
 <body class="dark">
 
@@ -213,6 +238,11 @@ canvas{
     </div>
   </div>
   <button class="btn-dark" onclick="toggleMarketMode()">Change Market Mode</button>
+  <!-- SIGNAL UPDATE ANIMATION -->
+<div class="signal-update">
+  <div class="signal-text">
+    UPDATE: Your Current Trading Session Signal Functionality Has Been Updated Successfully.
+  </div>
 </div>
 
 <!-- ================= CHART ================= -->
