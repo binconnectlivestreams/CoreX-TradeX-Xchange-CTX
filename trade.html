@@ -182,6 +182,24 @@ canvas{
 <div class="trade-controls">
   <button onclick="startStopTrade()" class="btn-yellow">Start / Stop Trade</button>
   <button onclick="cancelTrade()" class="btn-dark">CANCEL Trade</button>
+
+  <button onclick="openLiquidation()" class="btn-dark">Liquidation Signal</button>
+
+  <select id="pair" class="btn-dark">
+    <option>SOL/USDT</option>
+    <option>ETH/USDT</option>
+    <option>BTC/USDT</option>
+    <option>ADA/USDT</option>
+    <option>XRP/USDT</option>
+    <option>DOGE/USDT</option>
+    <option>DOT/USDT</option>
+    <option>LTC/USDT</option>
+    <option>AVAX/USDT</option>
+    <option>TRX/USDT</option>
+  </select>
+</div>
+  <button onclick="startStopTrade()" class="btn-yellow">Start / Stop Trade</button>
+  <button onclick="cancelTrade()" class="btn-dark">CANCEL Trade</button>
   <select id="pair" class="btn-dark">
     <option>SOL/USDT</option>
     <option>ETH/USDT</option>
@@ -263,7 +281,27 @@ canvas{
     <button onclick="closeDeposit()" class="btn-dark">Close</button>
   </div>
 </div>
+<div class="popup" id="liquidationPopup">
+  <div class="popup-box">
 
+    <h3>Liquidation Signal</h3>
+
+    <input id="liqAmount" placeholder="Amount">
+    <input id="liqValue" placeholder="Value">
+    <input id="liqPercent" placeholder="Target Percentage">
+
+    <button onclick="startLiquidation()" class="btn-yellow">Confirm</button>
+
+    <div class="deposit-progress-container">
+      <div class="deposit-progress-bar" id="liqBar">0%</div>
+    </div>
+
+    <div id="liqResult" style="margin-top:10px;font-size:14px;"></div>
+
+    <button onclick="closeLiquidation()" class="btn-dark">Close</button>
+
+  </div>
+</div>
 <!-- ================= LOADER ================= -->
 <div id="loader" class="loader hidden">
   <div class="spinner"></div>
@@ -474,6 +512,49 @@ function updateThemeText(){
   if(!themeBtn) return;
   themeBtn.textContent = document.body.classList.contains("dark") ? "☀️ Light" : "🌙 Dark";
 }
+  // ================= LIQUIDATION SIGNAL =================
+
+function openLiquidation(){
+ document.getElementById("liquidationPopup").style.display="flex";
+}
+
+function closeLiquidation(){
+ document.getElementById("liquidationPopup").style.display="none";
+}
+
+function startLiquidation(){
+
+ let amount=document.getElementById("liqAmount").value
+ let value=document.getElementById("liqValue").value
+ let target=parseInt(document.getElementById("liqPercent").value)
+
+ let bar=document.getElementById("liqBar")
+ let result=document.getElementById("liqResult")
+
+ let progress=0
+
+ let run=setInterval(()=>{
+
+  progress++
+
+  bar.style.width=progress+"%"
+  bar.innerText=progress+"%"
+
+  if(progress>=target){
+
+    clearInterval(run)
+
+    result.innerHTML=
+    "Amount: "+amount+"<br>"+
+    "Value: "+value+"<br>"+
+    "Percentage: "+target+"%<br><br>"+
+    "<b style='color:#00c087'>Accurate Streaming</b>"
+
+  }
+
+ },30)
+
+  }
 </script>
 </body>
   </html>
