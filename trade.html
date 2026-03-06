@@ -158,40 +158,116 @@ canvas{
 
 /* ================= BLINK ================= */
 @keyframes blink{ from{opacity:1;} to{opacity:0.5;} }
-  
-.signal-update{
+trade-alert-bar{
+    width:100%;
+    height:40px;
+    background:#0b0b0b;
+    border-top:1px solid #1a1a1a;
+    border-bottom:1px solid #1a1a1a;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    position:relative;
+    font-family:Arial, sans-serif;
+}
+
+.trade-alert-text{
+    position:absolute;
+    white-space:nowrap;
+    font-size:15px;
+    font-weight:600;
+    color:#ff2b2b;
+    text-shadow:0 0 6px rgba(255,0,0,0.7);
+    animation: tickerMove 3s linear infinite;
+}
+
+/* animation */
+@keyframes tickerMove{
+
+    0%{
+        transform:translateX(100%);
+    }
+
+    100%{
+        transform:translateX(-100%);
+    }/* ALERT BAR */
+
+.trade-alert-bar{
+  position:fixed;
+  bottom:0;
+  left:0;
   width:100%;
+  height:42px;
   background:#000;
-  overflow:hidden;
-  height:40px;
   display:flex;
   align-items:center;
+  overflow:hidden;
+  z-index:9999;
+  font-family:Arial, sans-serif;
+  border-top:1px solid #222;
 }
 
-.signal-track{
+/* LEFT SIDE ICON */
+
+.alert-left{
   display:flex;
-  white-space:nowrap;
-  animation: tickerMove 20s linear infinite;
+  align-items:center;
+  padding-left:10px;
+  margin-right:10px;
 }
 
-.signal-track span{
-  color:#00ff00;
+.alert-icon{
+  font-size:18px;
+  margin-right:6px;
+  animation:blink 1s infinite;
+}
+
+/* LIVE DOT */
+
+.live-dot{
+  width:8px;
+  height:8px;
+  background:red;
+  border-radius:50%;
+  animation:pulse 1.5s infinite;
+}
+
+/* TICKER AREA */
+
+.ticker-wrap{
+  width:100%;
+  overflow:hidden;
+}
+
+/* MOVING TEXT */
+
+.ticker-move{
+  color:red;
   font-weight:bold;
-  font-size:16px;
-  padding:0 60px;
-
-  /* keep text sharp */
-  -webkit-font-smoothing: antialiased;
-  backface-visibility:hidden;
+  font-size:15px;
+  white-space:nowrap;
+  padding-left:100%;
+  animation:scrollTicker 20s linear infinite;
 }
 
-@keyframes tickerMove{
-  0%{
-    transform:translateX(-50%);
-  }
-  100%{
-    transform:translateX(0%);
-  }
+/* ANIMATIONS */
+
+@keyframes scrollTicker{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-100%);}
+}
+
+@keyframes blink{
+  0%,100%{opacity:1;}
+  50%{opacity:0.3;}
+}
+
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(255,0,0,0.7);}
+  70%{box-shadow:0 0 0 8px rgba(255,0,0,0);}
+  100%{box-shadow:0 0 0 0 rgba(255,0,0,0);}
+}
+
   </style>
 </head>
 <body class="dark">
@@ -331,16 +407,21 @@ canvas{
 <div id="loader" class="loader hidden">
   <div class="spinner"></div>
   <p>Redirecting...</p>
-<!-- PROFESSIONAL SIGNAL UPDATE TICKER -->
-<div class="signal-update">
-  <div class="signal-track">
-    <span>
-      UPDATE: Your Current Trading Session Signal Functionality Has Been Updated Successfully.
-    </span>
-    <span>
-      UPDATE: Your Current Trading Session Signal Functionality Has Been Updated Successfully.
-    </span>
+  <!-- ===== TRADING SIGNAL ALERT BAR ===== -->
+
+<div class="trade-alert-bar">
+
+  <div class="alert-left">
+    <span class="alert-icon">🚨</span>
+    <span class="live-dot"></span>
   </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker-move">
+      UPDATE: Your Current Trading Session Signal Functionality Has Been Updated Successfully.
+    </div>
+  </div>
+
 </div>
 
 <script>
