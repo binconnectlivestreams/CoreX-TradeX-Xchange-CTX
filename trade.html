@@ -160,98 +160,31 @@ canvas{
 
 /* ================= BLINK ================= */
 @keyframes blink{ from{opacity:1;} to{opacity:0.5;} }
-trade-alert-bar{
-    width:100%;
-    height:40px;
-    background:#0b0b0b;
-    border-top:1px solid #1a1a1a;
-    border-bottom:1px solid #1a1a1a;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    position:relative;
-    font-family:Arial, sans-serif;
-}
-
-.trade-alert-text{
-    position:absolute;
-    white-space:nowrap;
-    font-size:15px;
-    font-weight:600;
-    color:#ff2b2b;
-    text-shadow:0 0 6px rgba(255,0,0,0.7);
-    animation: tickerMove 3s linear infinite;
-}
-
-/* animation */
-@keyframes tickerMove{
-
-    0%{
-        transform:translateX(100%);
-    }
-
-    100%{
-        transform:translateX(-100%);
-    }/* ALERT BAR */
-
-.trade-alert-bar{
-  position:fixed;
-  bottom:0;
-  left:0;
+.signal-update{
   width:100%;
-  height:42px;
+  overflow:hidden;
   background:#000;
-  display:flex;
-  align-items:center;
-  overflow:hidden;
-  z-index:9999;
-  font-family:Arial, sans-serif;
-  border-top:1px solid #222;
+  padding:8px 0;
+  position:relative;
 }
 
-/* LEFT SIDE ICON */
-
-.alert-left{
-  display:flex;
-  align-items:center;
-  padding-left:10px;
-  margin-right:10px;
-}
-
-.alert-icon{
-  font-size:18px;
-  margin-right:6px;
-  animation:blink 3s infinite;
-}
-
-/* LIVE DOT */
-
-.live-dot{
-  .live-dot{
-  width:8px;
-  height:8px;
-  background:#00c087;
-  border-radius:50%;
-  animation:pulse 2.5s infinite;
-}
-
-/* TICKER AREA */
-
-.ticker-wrap{
-  width:100%;
-  overflow:hidden;
-}
-
-/* MOVING TEXT */
-
-.ticker-move{
-  color:#00ff88;   /* GREEN */
+.signal-text{
+  color:#00ff00; /* green text */
   font-weight:bold;
-  font-size:15px;
+  font-size:16px;
   white-space:nowrap;
-  padding-left:100%;
-  animation:scrollTicker 100s linear infinite;
+  position:absolute;
+  animation: tickerMove 20s linear infinite;
 }
+
+/* LEFT TO RIGHT MOVEMENT */
+@keyframes tickerMove{
+  0%{
+    left:-100%;
+  }
+  100%{
+    left:100%;
+  }
 
 /* ANIMATIONS */
 
