@@ -74,6 +74,8 @@ canvas{
   border-radius:12px;
   text-align:center;
   color:var(--text-main);
+  body.popup-open{
+  overflow:hidden;
 }
 .wallet-box{
   display:flex;
@@ -631,12 +633,25 @@ function updateThemeText(){
 }
   // ================= LIQUIDATION SIGNAL =================
 
+function openDeposit(){
+  document.getElementById("depositPopup").style.display="flex";
+  document.body.classList.add("popup-open");
+  updateWallet();
+}
+
+function closeDeposit(){
+  document.getElementById("depositPopup").style.display="none";
+  document.body.classList.remove("popup-open");
+}
+
 function openLiquidation(){
- document.getElementById("liquidationPopup").style.display="flex";
+  document.getElementById("liquidationPopup").style.display="flex";
+  document.body.classList.add("popup-open");
 }
 
 function closeLiquidation(){
- document.getElementById("liquidationPopup").style.display="none";
+  document.getElementById("liquidationPopup").style.display="none";
+  document.body.classList.remove("popup-open");
 }
 
 function startLiquidation(){
