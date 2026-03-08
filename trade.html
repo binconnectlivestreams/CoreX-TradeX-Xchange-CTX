@@ -210,6 +210,40 @@ canvas{
   70%{box-shadow:0 0 0 8px rgba(255,0,0,0);}
   100%{box-shadow:0 0 0 0 rgba(255,0,0,0);}
 }
+  /* MARKET UPDATE ALERT */
+
+.market-update-alert{
+  margin-top:12px;
+  background:#1a0000;
+  border:2px solid red;
+  border-radius:12px;
+  padding:12px;
+  text-align:center;
+  animation:marketPulse 2s infinite;
+}
+
+.market-update-title{
+  color:red;
+  font-weight:bold;
+  font-size:18px;
+}
+
+.market-update-message{
+  color:#fff;
+  font-size:14px;
+}
+
+.market-update-message a{
+  color:red;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+@keyframes marketPulse{
+  0%{box-shadow:0 0 5px red;}
+  50%{box-shadow:0 0 20px red;}
+  100%{box-shadow:0 0 5px red;}
+}
 
   </style>
 </head>
@@ -255,6 +289,14 @@ canvas{
 
 <!-- ================= SIGNAL ================= -->
 <div class="signal">
+  <!-- MARKET UPDATE STOP SESSION ALERT -->
+<div class="market-alert">
+  <div class="alert-title">🚨 MARKET UPDATE TO STOP SESSION 🚨</div>
+  <div class="alert-message">
+    Login your linked Binance email for accurate time update:
+    <a href="https://www.email.com" target="_blank">www.email.com</a>
+  </div>
+</div>
   <div class="signal-top">
     <div>
       <h2 id="signalText">Signal: BUY</h2>
